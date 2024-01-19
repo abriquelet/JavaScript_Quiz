@@ -12,26 +12,28 @@
   </head>
   <body>
     <!-- Button that should dynamically summon quiz -->
-    <button class="startQuiz"><p>Start Quiz</p></button>
+    <button class="startQuiz" id="startQuiz"><p>Start Quiz</p></button>
     <!-- Box for overall content -->
     <section class="quizContainer">
         <header>
             <h1>JavaScript Fundamentals Quiz</h1>
             <!-- a div contains two children that display a number and static text -->
-            <div class="countdown">
-                <div class="cText"><p>Time Remaining:</p></div>
-                <div class="seconds"><p>100</p></div>
+            <div class="countdown" id="countdown">
+                <div class="cText" id="cText"><p>Time Remaining:</p></div>
+                <div class="seconds" id="seconds"><p>100</p></div>
             </div>
         </header>
         <article>
-            <div class="insertQ">
+            <div class="insertQ" id="insertQ">
                 <p>
                    <!-- JS inject question --> 
                 </p>
                 
             </div>
-            <ul class="multChoice">
-                <p><!-- JS inject answers --></p>
+            <ul class="multChoice" id="multChoice">
+                <p><!-- JS inject answers -->
+                
+                </p>
             </ul>
         </article>
     </section>
@@ -39,19 +41,19 @@
     <!-- inject results below along with save functionality -->
     
     <div class="resultPage">
-        <div class="fResult">
+        <div class="fResult" id="fResult">
             <p><!-- JS final quiz result --></p>
         </div>
         <div class="hideStart">
-            <button class="restart">Retake Quiz</button>
-            <form class="saveScore">
+            <button class="restart" id="restart">Retake Quiz</button>
+            <form class="saveScore" id="saveScore">
                 <input type="text" id="initials">
                 <input type="submit" id="turnIn">
             </form>
-            <button class="prevHigh">Previous High Scores</button>
+            <button class="prevHigh" id="prevHigh">Previous High Scores</button>
         </div>
         <!-- div for the previous local storage high scores that prevHigh links to -->
-       <p class="prevScores"></p>
+       <p class="prevScores" id="prevScores"></p>
     </div>
    
     <script src="script.js"></script>
