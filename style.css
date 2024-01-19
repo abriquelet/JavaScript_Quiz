@@ -1,0 +1,313 @@
+:root {
+    --bgDes:linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    --bgSize: 400% 400%;
+    --bgAnim: gradient 15s ease infinite;
+    --desTwo: linear-gradient(45deg, #d1faff, #f3d1fd, #ffc3d9, #c6c8f7);
+    --textShadow:1px 1px 10px rgb(124, 116, 116); 
+    --fFamily:'Bubbler One', sans-serif;
+}
+
+/*General document styling*/
+/*ADD FONT FAMILY*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:var(--fFamily);
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+/*General form styling*/
+form {
+    max-width:100%;
+    border:none;
+    align-self: center;
+}
+/*General html form input styling*/
+form input{
+    
+    font-size: 100%;
+    padding: 5px;
+    color: white;
+    background-size: cover;
+    animation: var(--bgAnim);
+    border: none;
+}
+/*Text box styling*/
+#initials {
+    background-color: white;
+    font-family:var(--fFamily);
+    font-size:30px;
+    font-weight: 700;
+    color: rgb(243, 200, 237);
+    border: none;
+    border-radius: 10px;
+    padding: 20px;
+}
+/*Add hover effects where applicable*/
+
+/*Initials submit button styling*/
+#turnIn {
+    font-family:var(--fFamily);
+    text-shadow: var(--textShadow);
+    background: var(--desTwo);
+    background-size: cover;
+    animation: var(--bgAnim);
+    border: none;
+    border-radius: 25px;
+    padding: 20px;
+    font-size:30px;
+    font-weight: 500;
+    box-shadow: inset 0 0 15px rgb(255, 240, 240);
+}
+/*Add hover effects where applicable*/
+
+/*Background styling, keyframes references gradient like it is a variable*/
+body {
+    background:var(--bgDes);
+    background-size:var(--bgSize);
+    animation:var(--bgAnim);
+}
+/*allover text*/
+h1,
+p,
+ul {
+color: transparent;
+background: var(--bgDes);
+background-size: cover;
+background-clip: text;
+-webkit-background-clip: text;
+animation: var(--bgAnim);
+}
+/*Animation details below*/
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+
+/*Absolutely position and center so
+they flow with scrolling. Flexboxes can
+be placed within if necessary, if not stick to relative positioning
+for simplicity.*/
+.startQuiz,
+.quizContainer,
+.resultPage,
+ul {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+box-shadow: inset 0 0 10px rgb(160, 155, 155);
+box-shadow: inset 0 0 15px rgb(255, 240, 240);
+}
+/*Button to summon quiz*/
+.startQuiz {
+font-family: var(--fFamily);
+font-size:70px;
+font-weight: bolder;
+color: rgb(255, 255, 255);
+padding: 40px;
+background:linear-gradient(45deg, #d1faff, #f3d1fd, #ffc3d9, #c6c8f7);
+background-size:cover;
+animation:var(--bgAnim);
+background-size:var(--bgSize);
+animation:var(--bgAnim);
+cursor:pointer;    
+border-radius: 50px;
+border: none;
+
+}
+/*Button text styling*/
+
+.startQuiz p {
+outline:none;
+text-shadow: 1px 1px 10px rgb(124, 116, 116);
+cursor: pointer;
+}
+
+/*Container for all quiz content, absolute pos, establishes width
+where flex items that come later cannot*/
+.quizContainer {
+width: 50%;
+border-radius: 25px;
+background:var(--desTwo);
+background-size:cover;
+animation: var(--bgAnim);
+text-shadow:var(--textShadow);
+opacity: 0;
+}
+/*Styles header, relatively positioned, children shall be flex items*/
+.quizContainer header {
+position: relative;
+z-index: 2;
+height: 100px;
+padding: 10px;
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+
+}
+/*Styles h1 within header*/
+.quizContainer h1 {
+font-size: 30px;
+font-weight: 700;
+padding: 10px;
+}
+/*Stores the timer text and number, flex container that puts
+the timer text and the appropriate number next to each other*/
+.countdown {
+height: 50px;
+padding: 10px;
+border-radius: 10px;
+display: flex;
+justify-content: space-between;
+text-align: center;
+align-items: center;
+align-content: center;
+}
+/* Styling for the text that comes before the numerical timer*/
+.cText {
+font-size: 20px;
+font-weight: 600;
+color: rgb(255, 255, 255);
+}
+/*numerical timer styling*/
+.seconds {
+    margin-left: 5px;
+    font-size: 20px;
+    font-weight: 600;
+    color: rgb(253, 253, 253); 
+}
+
+/*END HEADER STYLING*/
+
+/* BEGIN QUIZ CONTENT STYLING */
+
+/*container for the inserted questions and multchoice answers*/
+.quizContainer article {
+    background:var(--desTwo);
+    background-size: cover;
+    animation: var(--bgAnim);
+    color: white;
+    padding: 10px;
+    border-radius: 25px;
+    
+}
+
+/*Styling for injected questions*/
+.insertQ {
+font-size: 25px;
+font-weight: 500;
+color: white;
+}
+
+/*Stying for injected answers*/
+.multChoice {
+padding: 15px;
+}
+/*Callback to js to insert with .choice*/
+.multChoice .choice{
+    background:var(--desTwo);
+    background-size: cover;
+    animation: var(--bgAnim);
+    border-radius: 20px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 400;
+    color: white;
+}
+
+/*RESULTS PAGE HERE
+SHOULD TRANSITION FROM QUIZ AND BOX DIMENSIONS SHOULD 
+MATCH WHAT CAME BEFORE */
+
+/*Matches above criteria, displays/formats below.*/
+.resultPage {
+    opacity: 0;
+    background:var(--desTwo);
+    background-size: cover;
+    animation: var(--bgAnim);
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+    width: 50%;
+    align-items: stretch;
+}
+
+/*JS injected quiz result*/
+.fResult {
+    font-size: 25px;
+    font-weight: 500;
+}
+
+/*Button/html form for this page container*/
+.hideStart {
+    display: flex;
+    justify-content: space-between;
+}
+
+/**/
+.restart {
+    font-size: 30px;
+font-weight: 700px;
+color: rgb(255, 255, 255);
+padding: 20px;
+background:linear-gradient(45deg, #d1faff, #f3d1fd, #ffc3d9, #c6c8f7);
+background-size:cover;
+animation:var(--bgAnim);
+background-size:var(--bgSize);
+animation:var(--bgAnim);
+cursor:pointer;    
+border-radius: 25px;
+border: none;
+box-shadow: inset 0 0 15px rgb(255, 240, 240);
+
+}
+/*FORM TO SAVE SCORE
+.LOCALSTORAGE SET GET DISPLAY RETURN TO PAGE*/
+.saveScore {
+  /*May delete or save for future styling*/
+}
+.prevHigh {
+    font-size: 30px;
+    font-weight: 700px;
+    color: rgb(255, 255, 255);
+    padding: 20px;
+    background:linear-gradient(45deg, #d1faff, #f3d1fd, #ffc3d9, #c6c8f7);
+    background-size:cover;
+    animation:var(--bgAnim);
+    background-size:var(--bgSize);
+    animation:var(--bgAnim);
+    cursor:pointer;    
+    border-radius: 25px;
+    border: none;
+    box-shadow: inset 0 0 15px rgb(255, 240, 240);
+     
+}
+
+.prevScores {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+    width: 50%;
+    align-items: stretch;
+}
+
+/*ADD PREV SCORES*/

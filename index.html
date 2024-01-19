@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>JavaScript Fundamentals Quiz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bubbler+One&family=DotGothic16&family=Play&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Button that should dynamically summon quiz -->
+    <button class="startQuiz"><p>Start Quiz</p></button>
+    <!-- Box for overall content -->
+    <section class="quizContainer">
+        <header>
+            <h1>JavaScript Fundamentals Quiz</h1>
+            <!-- a div contains two children that display a number and static text -->
+            <div class="countdown">
+                <div class="cText"><p>Time Remaining:</p></div>
+                <div class="seconds"><p>100</p></div>
+            </div>
+        </header>
+        <article>
+            <div class="insertQ">
+                <p>
+                   <!-- JS inject question --> 
+                </p>
+                
+            </div>
+            <ul class="multChoice">
+                <p><!-- JS inject answers --></p>
+            </ul>
+        </article>
+    </section>
+   
+    <!-- inject results below along with save functionality -->
+    
+    <div class="resultPage">
+        <div class="fResult">
+            <p><!-- JS final quiz result --></p>
+        </div>
+        <div class="hideStart">
+            <button class="restart">Retake Quiz</button>
+            <form class="saveScore">
+                <input type="text" id="initials">
+                <input type="submit" id="turnIn">
+            </form>
+            <button class="prevHigh">Previous High Scores</button>
+        </div>
+        <!-- div for the previous local storage high scores that prevHigh links to -->
+       <p class="prevScores"></p>
+    </div>
+   
+    <script src="script.js"></script>
+  </body>
