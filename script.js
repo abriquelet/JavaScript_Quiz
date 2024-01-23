@@ -43,8 +43,23 @@ choices: [
 ]
 //END QUESTIONS//
 
-//startQuiz button selector//
+//declare variables to be interacted with.
 const startQuiz = document.getElementById('startQuiz');
+const quizContainer = document.getElementsByClassName('quizContainer');
+const countdown = document.getElementById('countdown');
+const cText = document.getElementById('cText');
+const seconds = document.getElementById('seconds');
+const insertQ = document.getElementById('insertQ');
+const multChoice = document.getElementById('multChoice');
+const resultPage = document.getElementsByClassName('resultPage');
+const fResult = document.getElementById('fResult');
+const hideStart = document.getElementsByClassName('hideStart');
+const restart = document.getElementById('restart');
+const saveScore = document.getElementById('saveScore');
+const prevHigh = document.getElementById('prevHigh');
+const prevScores = document.getElementById('prevScores');
+
+
 
 //ADD EVENT LISTENER WITH NAMED FUNCTION TO RUN WHEN USER STARTS QUIZ//
 
@@ -52,9 +67,16 @@ startQuiz.addEventListener('click', shuffle);
 
 // Shuffle multiChoice array
 
-function shuffle(qnumb) {
-
-let starter = Math.floor(Math.random() * multiChoice.length);
-console.log(starter);
-
+function shuffle() {
+let whateverIndex = multiChoice.length, randomIndex;
+    while (whateverIndex>0){
+let randomIndex = Math.floor(Math.random() * multiChoice.length);
+    whateverIndex--;
+    [multiChoice[whateverIndex], multiChoice[randomIndex]] =
+    [multiChoice[randomIndex], multiChoice[whateverIndex]];
+    console.log(shuffle());
 }
+  }
+// let starter = function shuffle(qnumb) }
+
+// Start game?
