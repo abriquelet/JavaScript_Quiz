@@ -74,6 +74,8 @@ const questionContainer = document.getElementById('questionContainer');
 const answerChoicesContainer = document.getElementById('answerChoices');
 const resultPage = document.getElementById('resultPage');
 const timerDisplay = document.getElementById('timerDisplay');
+//added restartButton
+const restartButton = document.getElementById('restart');
 //MAKE SURE DOM IS LOADED OR MANY ERRORS WILL OCCUR
 // ADD EVENT LISTENER WITH NAMED FUNCTION TO RUN WHEN THE USER STARTS QUIZ//
 document.addEventListener('DOMContentLoaded', function () {
@@ -97,6 +99,32 @@ document.addEventListener('DOMContentLoaded', function () {
         displayQuestion(currentQuestion);
     });
 });
+//IF RESTART IS CLICKED
+//clears all values and goes to the startQuiz on click function again. 
+restartButton.addEventListener('click', function () {
+    // Reset variables
+    currentQuestion = 0;
+    total = 0;
+    timer = 100;
+
+    // Stop the timer interval
+    clearInterval(timerInterval);
+
+    // Reset display styles
+    quizContainer.style.display = 'none';
+    resultPage.style.display = 'none';
+    startQuiz.style.display = 'block';
+
+    // Clear the timer display
+    timerDisplay.textContent = '';
+
+    // Show the start quiz button
+    startQuiz.style.display = 'block';
+
+    // Start the quiz again
+    startQuiz.click();
+});
+
 //displayQuestion begins
 function displayQuestion(questionIndex) {
     //checks if there are more questions, if so proceeds to next.
