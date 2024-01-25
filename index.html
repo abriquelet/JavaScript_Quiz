@@ -6,42 +6,38 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>JavaScript Fundamentals Quiz</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bubbler+One&family=DotGothic16&family=Play&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bubbler+One&family=DotGothic16&family=Play&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <!-- Button that should dynamically summon quiz -->
-    <button class="startQuiz" id="startQuiz"><p>Start Quiz</p></button>
+    <button id="startQuiz"><p>Start Quiz</p></button>
     <!-- Box for overall content -->
-    <section class="quizContainer">
+    <section class="quizContainer" id="quizContainer">
         <header>
             <h1>JavaScript Fundamentals Quiz</h1>
-            <!-- a div contains two children that display a number and static text -->
-            <div class="countdown" id="countdown">
-                <div class="cText" id="cText"><p>Time Remaining:</p></div>
-                <div class="seconds" id="seconds"><p>100</p></div>
+            <!-- timer -->
+            <div class="countdown">
+                <div class="cText"><p>Time Remaining:</p></div>
+                <div id="timerDisplay"><p>100</p></div>
             </div>
         </header>
-        <article>
-            <div class="insertQ" id="insertQ">
-                <p>
-                   <!-- JS inject question --> 
-                </p>
-                
-            </div>
-            <ul class="multChoice" id="multChoice">
-                <p><!-- JS inject answers -->
-                
-                </p>
+        <article class="flex" id="box">
+            <div class="insertQ" id="questionContainer">
+                <p><!-- JS inject question --></p>
+            </div> 
+            <!-- ADDED IDS THAT DIFFER FROM CLASS NAME FOR BOTH THE QUESTIONS AND THE BUTTONS -->
+            <ul class="multChoice" id="answerChoices">
+
             </ul>
         </article>
     </section>
    
     <!-- inject results below along with save functionality -->
     
-    <div class="resultPage">
-        <div class="fResult" id="fResult">
+    <div class="resultPage" id="resultPage">
+        <div class="fResult">
             <p><!-- JS final quiz result --></p>
         </div>
         <div class="hideStart">
@@ -53,8 +49,13 @@
             <button class="prevHigh" id="prevHigh">Previous High Scores</button>
         </div>
         <!-- div for the previous local storage high scores that prevHigh links to -->
-       <p class="prevScores" id="prevScores"></p>
+        <ul id="scoreboard">
+            <!-- inject previous high scores to compare -->
+            
+        </ul>
+       </p>
     </div>
    
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
   </body>
+</html>

@@ -48,7 +48,6 @@ form input{
     border-radius: 10px;
     padding: 20px;
 }
-/*Add hover effects where applicable*/
 
 /*Initials submit button styling*/
 #turnIn {
@@ -64,7 +63,7 @@ form input{
     font-weight: 500;
     box-shadow: inset 0 0 15px rgb(255, 240, 240);
 }
-/*Add hover effects where applicable*/
+
 
 /*Background styling, keyframes references gradient like it is a variable*/
 body {
@@ -102,10 +101,9 @@ animation: var(--bgAnim);
 they flow with scrolling. Flexboxes can
 be placed within if necessary, if not stick to relative positioning
 for simplicity.*/
-.startQuiz,
+#startQuiz,
 .quizContainer,
-.resultPage,
-ul {
+.resultPage {
 position: absolute;
 top: 50%;
 left: 50%;
@@ -114,7 +112,7 @@ box-shadow: inset 0 0 10px rgb(160, 155, 155);
 box-shadow: inset 0 0 15px rgb(255, 240, 240);
 }
 /*Button to summon quiz*/
-.startQuiz {
+#startQuiz {
 font-family: var(--fFamily);
 font-size:70px;
 font-weight: bolder;
@@ -132,14 +130,13 @@ border: none;
 }
 /*Button text styling*/
 
-.startQuiz p {
+#startQuiz p {
 outline:none;
 text-shadow: 1px 1px 10px rgb(124, 116, 116);
 cursor: pointer;
 }
 
-/*Container for all quiz content, absolute pos, establishes width
-where flex items that come later cannot*/
+/*Container for all quiz content, absolute pos, establishes width of flex items */ 
 .quizContainer {
 width: 50%;
 border-radius: 25px;
@@ -147,7 +144,8 @@ background:var(--desTwo);
 background-size:cover;
 animation: var(--bgAnim);
 text-shadow:var(--textShadow);
-opacity: 0;
+border: #e73c7e 10px;
+
 }
 /*Styles header, relatively positioned, children shall be flex items*/
 .quizContainer header {
@@ -158,6 +156,7 @@ padding: 10px;
 display: flex;
 flex-direction: row;
 justify-content: space-between;
+align-items: center;
 
 }
 /*Styles h1 within header*/
@@ -165,6 +164,7 @@ justify-content: space-between;
 font-size: 30px;
 font-weight: 700;
 padding: 10px;
+margin-bottom: 10px;
 }
 /*Stores the timer text and number, flex container that puts
 the timer text and the appropriate number next to each other*/
@@ -177,6 +177,7 @@ justify-content: space-between;
 text-align: center;
 align-items: center;
 align-content: center;
+margin-bottom: 10px;
 }
 /* Styling for the text that comes before the numerical timer*/
 .cText {
@@ -185,7 +186,7 @@ font-weight: 600;
 color: rgb(255, 255, 255);
 }
 /*numerical timer styling*/
-.seconds {
+#timerDisplay {
     margin-left: 5px;
     font-size: 20px;
     font-weight: 600;
@@ -197,55 +198,88 @@ color: rgb(255, 255, 255);
 /* BEGIN QUIZ CONTENT STYLING */
 
 /*container for the inserted questions and multchoice answers*/
-.quizContainer article {
-    background:var(--desTwo);
+#box {
+    background: var(--desTwo);
     background-size: cover;
     animation: var(--bgAnim);
     color: white;
-    padding: 10px;
+    padding: 20px;
     border-radius: 25px;
-    
+    display: flex;
+    flex-direction: row-;
+    align-items: flex-start;
+    margin-top: 40px;
+    margin-bottom: 40px;
 }
 
 /*Styling for injected questions*/
-.insertQ {
-font-size: 25px;
-font-weight: 500;
-color: white;
+.insertQ p {
+    font-size: 25px;
+    font-weight: 500;
+    color: white;
+    margin-bottom: 20px;
+    margin-left: 0; 
 }
 
-/*Stying for injected answers*/
-.multChoice {
-padding: 15px;
-}
-/*Callback to js to insert with .choice*/
-.multChoice .choice{
-    background:var(--desTwo);
+    .multChoice {
+        display: flex;
+        flex-direction: row;
+        align-items: center; 
+        justify-content: space-around; 
+        padding: 15px;
+        border: 2px red dotted;
+        border: #e73c7e 10px;
+    }
+ /*/insert
+  /*/
+  .multChoice p {
+    background: var(--desTwo);
     background-size: cover;
     animation: var(--bgAnim);
     border-radius: 20px;
     padding: 10px;
+    margin-bottom: 10px;
     cursor: pointer;
     font-size: 20px;
     font-weight: 400;
     color: white;
+    border: #e73c7e 10px;
+}
+/*Added radio buttons for answer*/
+input[type="radio"] {
+    display: none;
+    padding-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+/*styling attempted*/
+input[type="radio"]:checked + label {
+display: block;
+cursor: pointer;
+height: 50px;
+width: 150px;
+text-align: center;
+line-height: 20px;
 }
 
+
+#answerChoices {
+    
+}
 /*RESULTS PAGE HERE
 SHOULD TRANSITION FROM QUIZ AND BOX DIMENSIONS SHOULD 
 MATCH WHAT CAME BEFORE */
 
 /*Matches above criteria, displays/formats below.*/
 .resultPage {
-    opacity: 0;
-    background:var(--desTwo);
+    background: var(--desTwo);
     background-size: cover;
     animation: var(--bgAnim);
     border-radius: 25px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 10px;
+    padding: 20px; /* Increase padding for better spacing */
     width: 50%;
     align-items: stretch;
 }
@@ -254,50 +288,46 @@ MATCH WHAT CAME BEFORE */
 .fResult {
     font-size: 25px;
     font-weight: 500;
+    margin-bottom: 20px;
 }
 
 /*Button/html form for this page container*/
 .hideStart {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: center;
 }
 
 /**/
 .restart {
     font-size: 30px;
-font-weight: 700px;
-color: rgb(255, 255, 255);
-padding: 20px;
-background:linear-gradient(45deg, #d1faff, #f3d1fd, #ffc3d9, #c6c8f7);
-background-size:cover;
-animation:var(--bgAnim);
-background-size:var(--bgSize);
-animation:var(--bgAnim);
-cursor:pointer;    
-border-radius: 25px;
-border: none;
-box-shadow: inset 0 0 15px rgb(255, 240, 240);
-
-}
-/*FORM TO SAVE SCORE
-.LOCALSTORAGE SET GET DISPLAY RETURN TO PAGE*/
-.saveScore {
-  /*May delete or save for future styling*/
-}
-.prevHigh {
-    font-size: 30px;
-    font-weight: 700px;
+    font-weight: 700;
     color: rgb(255, 255, 255);
     padding: 20px;
-    background:linear-gradient(45deg, #d1faff, #f3d1fd, #ffc3d9, #c6c8f7);
-    background-size:cover;
-    animation:var(--bgAnim);
-    background-size:var(--bgSize);
-    animation:var(--bgAnim);
-    cursor:pointer;    
+    background: linear-gradient(45deg, #d1faff, #f3d1fd, #ffc3d9, #c6c8f7);
+    background-size: cover;
+    animation: var(--bgAnim);
+    cursor: pointer;
     border-radius: 25px;
     border: none;
     box-shadow: inset 0 0 15px rgb(255, 240, 240);
+    margin-bottom: 10px;
+
+}
+
+.prevHigh {
+    font-size: 30px;
+    font-weight: 700;
+    color: rgb(255, 255, 255);
+    padding: 20px;
+    background: linear-gradient(45deg, #d1faff, #f3d1fd, #ffc3d9, #c6c8f7);
+    background-size: cover;
+    animation: var(--bgAnim);
+    cursor: pointer;
+    border-radius: 25px;
+    border: none;
+    box-shadow: inset 0 0 15px rgb(255, 240, 240);
+    margin-bottom: 10px;
      
 }
 
@@ -305,9 +335,22 @@ box-shadow: inset 0 0 15px rgb(255, 240, 240);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 10px;
+    padding: 20px; /* Increase padding for better spacing */
     width: 50%;
     align-items: stretch;
 }
 
 /*ADD PREV SCORES*/
+#scoreboard {
+width: 50%;
+align-self: center;
+border-radius: 25px;
+background:var(--desTwo);
+background-size:cover;
+animation: var(--bgAnim);
+text-shadow:var(--textShadow);
+border: #e73c7e 10px;
+
+}
+
+
