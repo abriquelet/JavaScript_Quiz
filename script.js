@@ -74,6 +74,12 @@ const questionContainer = document.getElementById('questionContainer');
 const answerChoicesContainer = document.getElementById('answerChoices');
 const resultPage = document.getElementById('resultPage');
 const timerDisplay = document.getElementById('timerDisplay');
+//added area for previous scores
+const previousHighScoresElement = document.getElementById('previousHighScores');
+//actual scoreboard
+const scoreboardElement = document.getElementById('scoreboard');
+//added restartButton
+const restartButton = document.getElementById('restart');
 //MAKE SURE DOM IS LOADED OR MANY ERRORS WILL OCCUR
 // ADD EVENT LISTENER WITH NAMED FUNCTION TO RUN WHEN THE USER STARTS QUIZ//
 document.addEventListener('DOMContentLoaded', function () {
@@ -82,6 +88,30 @@ document.addEventListener('DOMContentLoaded', function () {
     resultPage.style.display = 'none'; 
 
     startQuiz.addEventListener('click', function () {
+        
+        const saveScoreForm = document.getElementById('saveScore');
+
+        // submits initials
+        saveScoreForm.addEventListener('submit', function (event) {
+            //will not run without preventing default
+            event.preventDefault(); 
+
+            // takes from input text box
+            const initialsInput = document.getElementById('initials');
+            const initials = initialsInput.value;
+
+            // first, middle, last initial
+            if (initials.length === 3) {
+                // send to local storage
+                localStorage.setItem('userInitials', initials);
+                // Concatenate initials with the score and store it in local storage
+                localStorage.setItem('userScore', initials + ' scored ' + total + '/5');
+                console.log('Initials stored:', initials + ' scored ' + total + '/5');
+            } else {
+                alert('You must enter exactly 3 characters to save your score.');
+            }
+        });
+
         //starts with hiding the start quiz button
         startQuiz.style.display = 'none'; 
         //removes display none prop from the container
@@ -97,25 +127,46 @@ document.addEventListener('DOMContentLoaded', function () {
         displayQuestion(currentQuestion);
     });
 });
+//IF RESTART IS CLICKED
+//clears all values and goes to the startQuiz on click function again. 
+restartButton.addEventListener('click', function () {
+    // Reset variables
+    currentQuestion = 0;
+    total = 0;
+    timer = 100;
+
+    // Stop the timer interval
+    clearInterval(timerInterval);
+
+    // Reset display styles
+    quizContainer.style.display = 'none';
+    resultPage.style.display = 'none';
+    startQuiz.style.display = 'block';
+
+    // Clear the timer display
+    timerDisplay.textContent = '';
+
+    // Show the start quiz button
+    startQuiz.style.display = 'block';
+
+    // Start the quiz again
+    startQuiz.click();
+});
+
 //displayQuestion begins
 function displayQuestion(questionIndex) {
-    //checks if there are more questions, if so proceeds to next.
     if (questionIndex < multiChoice.length) {
-        //empty array for true false values
         let choices = [];
-        //using i instead of j breaks quiz
+        //using i breaks functionality, now only pulls answers relevant to the question by pulling from
+        //multiChoice using dom as opposed to mixing up the choices with the questions. 
         for (let j = 0; j < multiChoice[questionIndex].choices.length; j++) {
-            //push radio button into html doc
-            choices.push( 
-                //label for consistant styling and clickability
+            choices.push(
                 '<label>'
                 + '<input type="radio" name="questions' + questionIndex + '" value="' + multiChoice[questionIndex].choices[j] + '">'
-                //Adds capital letters to the front of the choices for formatting
-                + String.fromCharCode(65 + j) + ': '
-                + shuffle()[questionIndex].choices[j]
+                +   String.fromCharCode(65 + j) + ': '
+                + multiChoice[questionIndex].choices[j]
                 + '</label>'
             );
-            console.log(questionIndex);
         }
 
         // Display the question and choices in the respective divs
@@ -158,14 +209,53 @@ function checkAnswer(selectedAnswer, questionIndex) {
     currentQuestion++;
     displayQuestion(currentQuestion);
 }
+// updates scoreboard
+function updateHighScores() {
+    // get previous scores using getItem
+    const previousScores = JSON.parse(localStorage.getItem('highScores')) || [];
+  
+    // gets current score and initials
+    const initials = localStorage.getItem('userInitials');
+    const userScore = total + "/5";
+  
+    //add current score to storage
+    previousScores.push({ initials, score: userScore });
+  
+    // Sort the scores in descending order
+    previousScores.sort((a, b) => {
+      return parseInt(b.score) - parseInt(a.score);
+    });
+  
+    // limits to top 3
+    const top3Scores = previousScores.slice(0, 3);
+  
+    // injects to html
+    const scoreboardElement = document.getElementById('scoreboard');
+    if (scoreboardElement) {
+      scoreboardElement.innerHTML = top3Scores.map(score => `<li>${score.initials}: ${score.score}</li>`).join('');
+    }
+  
+    // using setItem to save to local storage
+    localStorage.setItem('highScores', JSON.stringify(top3Scores));
+  }
 
 function showResults() {
-    //more hiding and revealing. 
-    resultPage.style.display = 'block'; 
-    quizContainer.style.display = 'none'; 
-    
-   
-}
+    // more hiding and revealing.
+    resultPage.style.display = 'block';
+    quizContainer.style.display = 'none';
+  
+    let score = total + "/5";
+    let scoreValueElement = document.getElementById('scoreValue');
+    // targets html 
+    if (scoreValueElement) {
+      scoreValueElement.textContent = score;
+  
+      // anon function 
+      updateHighScores();
+    } else {
+      alert("Why start a quiz if you aren't going to answer any questions?");
+    }
+  }
 
 function startTimer() {
     //starts counting down from the value in the timer variable

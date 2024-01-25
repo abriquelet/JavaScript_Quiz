@@ -37,22 +37,29 @@
     <!-- inject results below along with save functionality -->
     
     <div class="resultPage" id="resultPage">
-        <div class="fResult">
-            <p><!-- JS final quiz result --></p>
+        <div class="fResult" id="fResult">
+            <!-- added id for easier js injection -->
+            <p>You Scored: <span id="scoreValue"></span><!-- JS final quiz result --></p>
         </div>
         <div class="hideStart">
             <button class="restart" id="restart">Retake Quiz</button>
+            <label id="yourScore"></label>
             <form class="saveScore" id="saveScore">
-                <input type="text" id="initials">
+                <!-- added a max length of 3 to ensure only initials could be entered. -->
+                <input type="text" id="initials" maxlength="3">
                 <input type="submit" id="turnIn">
             </form>
             <button class="prevHigh" id="prevHigh">Previous High Scores</button>
         </div>
         <!-- div for the previous local storage high scores that prevHigh links to -->
-        <ul id="scoreboard">
-            <!-- inject previous high scores to compare -->
+        <div id="previousHighScores">
+            <p>Previous High Scores</p>
+            <ul id="scoreboard">
+              <!-- Scores will be added dynamically here -->
+            </ul>
+          </div>
             
-        </ul>
+        </div>
        </p>
     </div>
    
